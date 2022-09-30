@@ -1,0 +1,53 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+features:
+  - fullTextSearch
+dataSources:
+  - kind: ethereum
+    name: AtlantisWorldFoundingAtlanteanScrolls
+    network: matic
+    source:
+      address: "0xf8583c1e7455afafd109d56d9fce2716e1fa498f"
+      abi: AtlantisWorldFoundingAtlanteanScrolls
+      startBlock: 24037478
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        # - Approval
+        # - ApprovalForAll
+        # - OwnershipTransferred
+        # - RoleAdminChanged
+        # - RoleGranted
+        # - RoleRevoked
+        # - RoyaltiesSet
+        # - ScrollMinted
+        - Transfer
+        # - UpdatedRoyalties
+      abis:
+        - name: AtlantisWorldFoundingAtlanteanScrolls
+          file: ./abis/AtlantisWorldFoundingAtlanteanScrolls.json
+      eventHandlers:
+        # - event: Approval(indexed address,indexed address,indexed uint256)
+        #   handler: handleApproval
+        # - event: ApprovalForAll(indexed address,indexed address,bool)
+        #   handler: handleApprovalForAll
+        # - event: OwnershipTransferred(indexed address,indexed address)
+        #   handler: handleOwnershipTransferred
+        # - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+        #   handler: handleRoleAdminChanged
+        # - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+        #   handler: handleRoleGranted
+        # - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+        #   handler: handleRoleRevoked
+        # - event: RoyaltiesSet(uint256,(address,uint96)[])
+        #   handler: handleRoyaltiesSet
+        # - event: ScrollMinted(address)
+        #   handler: handleScrollMinted
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+        # - event: UpdatedRoyalties(address,uint256)
+        #   handler: handleUpdatedRoyalties
+      file: ./src/mapping.ts

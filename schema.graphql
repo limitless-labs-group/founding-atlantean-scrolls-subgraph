@@ -23,4 +23,5 @@ type Burn @entity {
   hash: String!
   ownerId: String!
   token: Token!
+  timestamp: BigInt!
 }

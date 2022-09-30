@@ -41,6 +41,7 @@ export function handleTransfer(event: TransferEvent): void {
     burn.hash = hash;
     burn.token = token.id;
     burn.ownerId = from;
+    burn.timestamp = event.block.timestamp;
     burn.save();
   }
 }

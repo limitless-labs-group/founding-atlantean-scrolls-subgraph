@@ -1,9 +1,9 @@
 type _Schema_
   @fulltext(
-    name: "tokenSearch"
+    name: "burnByUserAddressSearch"
     language: en
     algorithm: rank
-    include: [{ entity: "Token", fields: [{ name: "ownerId" }] }]
+    include: [{ entity: "Burn", fields: [{ name: "ownerId" }] }]
   )
 
 type Token @entity {
@@ -16,4 +16,11 @@ type Token @entity {
 type User @entity {
   id: ID!
   tokens: [Token!]! @derivedFrom(field: "owner")
+}
+
+type Burn @entity {
+  id: ID!
+  hash: String!
+  ownerId: String!
+  token: Token!
 }
